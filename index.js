@@ -26,29 +26,23 @@ document
         case 'cat-card-update':
           const evt = event.target.value;
           const modal = document.querySelector('.create-edit-modal-form');
-          modal.classList.toggle('active');
-          const modalForm = document.querySelector('form');
-          const modalBtn = modalForm.querySelector('button');
+          modal.classList.toggle('active'); //делаем модалку активной
+          const modalForm = document.querySelector('form'); //находим форму
+          const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
           modalBtn.addEventListener('click', (evt) => {
             const forms = document.forms[0];
             forms.addEventListener('submit', (event) => {
+              // вешаем обработчик на кнопку формы
               event.preventDefault();
-              const formData = new FormData(forms);
-              const cat = Object.fromEntries(formData);
-              console.log(cat.id);
+              const formData = new FormData(forms); //получаем данные формы
+              const cat = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
               api.updateCat(cat).then((res) => {
                 console.log(res);
                 refreshCatsAndContent();
               });
-              modal.classList.toggle('active');
+              modal.classList.toggle('active'); //делаем модалку неактивной
             });
-
-            // api.updateCat(evt).then((res) => {
-            //   console.log(res);
-            //   refreshCatsAndContent();
-            // });
           });
-
           break;
         case 'cat-card-delete':
           api.getDeleteCat(event.target.value).then((res) => {

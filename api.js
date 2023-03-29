@@ -29,8 +29,7 @@ class Api {
 
   updateCat = (cat) => {
     //изменение котика
-    let url = `https://cats.petiteweb.dev/api/single/NSobol/update/${cat.id}`;
-    return fetch(url, {
+    return fetch(`${this.baseUrl}update/${cat.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
