@@ -41,6 +41,7 @@ document
                 refreshCatsAndContent();
               });
               modal.classList.toggle('active'); //делаем модалку неактивной
+              forms.reset(); //очистка полей формы
             });
           });
           break;
