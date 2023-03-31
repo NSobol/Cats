@@ -6,39 +6,79 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<script src="./api.js" defer></script>
-	<script src="./index.js" defer></script>
+	<script src="./js/api.js" defer></script>
+	<script src="./js/index.js" defer></script>
 	<script src="./components/cart.js"></script>
-	<link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-	<div id="homepage">
-		<div class="content"></div>
 
-		<div class="create-edit-modal-form">
-			<form action="/target/" class="modal-form">
-				<!-- <label for="id">Id</label> -->
-				<input id="id" name="id" placeholder="Id" required />
-				<!-- <label for="name">Имя</label> -->
-				<input id="name" name="name" placeholder="Имя" required />
-				<!-- <label for="image">Ссылка на изображение</label> -->
-				<input id="image" name="image" placeholder="Ссылка на изображение" required />
-				<!-- <label for="age">Возраст</label> -->
-				<input id="age" name="age" type="number" placeholder="Возраст" required />
-				<!-- <label for="rate">Рейтинг</label> -->
-				<input id="rate" name="rate" type="number" placeholder="Рейтинг" required />
-				<textarea id="description" name="description" rows="3" placeholder="Описание" required></textarea>
-				<button type="submit">Ok</button>
-			</form>
-			<!-- <form action="/target/" method="POST">
-				<input name="test1" value="123">
-				<input name="test2" value="456">
-				<input type="submit">
-			</form> -->
+	<header class="header">
+		<div class="top-panel">
+			<img src="./images/cat1.png" alt="Лого" class="logo">
+			<div class="header-btns">
+				<button class="add-btn" data-text="Добавить"></button>
+				<button class="update-btn" data-text="Обновить"></button>
+
+			</div>
+		</div>
+	</header>
+
+	<main class="main-content">
+
+		<div id="homepage">
+			<div class="content"></div>
+			<div class="create-edit-modal-form">
+				<form action="/target/" class="modal-form">
+					<!-- <label for="id">Id</label> -->
+					<input id="id" name="id" placeholder="Id" required />
+					<!-- <label for="name">Имя</label> -->
+					<input id="name" name="name" placeholder="Имя" required />
+					<!-- <label for="image">Ссылка на изображение</label> -->
+					<input id="image" name="image" placeholder="Ссылка на изображение" required />
+					<!-- <label for="age">Возраст</label> -->
+					<input id="age" name="age" type="number" placeholder="Возраст" required />
+					<!-- <label for="rate">Рейтинг</label> -->
+					<input id="rate" name="rate" type="number" placeholder="Рейтинг" required />
+					<textarea id="description" name="description" rows="3" placeholder="Описание" required></textarea>
+					<button type="submit">Ok</button>
+				</form>
+
+			</div>
 		</div>
 
-	</div>
+	</main>
+
+	<footer class="footer">
+		<div class="footer-content">
+			<p class="copyright">&#169; Varna, Смоленск 2023</p>
+			<div class="footer-contacts">
+				<ul class="footer-contacts-list">
+					<li class="footer-contacts-list-item">
+						<a href="https://github.com/NatalySoboleva">
+							<img src="./images/github.svg" alt="Гитхаб">
+						</a>
+					</li>
+					<li class="footer-contacts-list-item">
+						<a href="https://vk.com/id95532557">
+							<img src="./images/vk.svg" alt="Вконтакте">
+						</a>
+					</li>
+					<li class="footer-contacts-list-item">
+						<a href="https://t.me/Varna1979" target="_blank" rel="nofollow">
+							<img src="./images/telegram.svg" alt="Телеграмм">
+						</a>
+					</li>
+					<li class="footer-contacts-list-item">
+						<a href="mailto:varna09@rambler.ru">
+							<img src="./images/mail.svg" alt="Телеграмм">
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>

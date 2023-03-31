@@ -108,17 +108,17 @@ document
 //   .catch((error) => {
 //     console.log(error);
 //   });
-const forms = document.forms[0];
-forms.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(forms);
-  //   console.log(event.target);
-  const body = Object.fromEntries(formData);
-  console.log(body);
+// const forms = document.forms[0];
+// forms.addEventListener('submit', (event) => {
+//   event.preventDefault();
+//   const formData = new FormData(forms);
+//   //   console.log(event.target);
+//   const body = Object.fromEntries(formData);
+//   console.log(body);
 
-  //api.addCat() c getNewIdOfCat
-  //api.updateCat() c getNewIdOfCat
-});
+//   //api.addCat() c getNewIdOfCat
+//   //api.updateCat() c getNewIdOfCat
+// });
 
 const getNewIdOfCat = () => {
   return api.getIdAllCats().then((res) => {
