@@ -1,8 +1,14 @@
-const homepage = document.getElementById('homepage');
-const refreshCatsAndContent = () => {
-  const content = document.getElementsByClassName('content')[0];
-  content.innerHTML = '';
+//Блок глобальных переменных проекта
+const homepage = document.getElementById('homepage'); //находим элемент с id "homepage"
+//const content = document.getElementsByClassName('content')[0];// находим элемент с классом content
+//второй вариант найти этот элемент
+const content = document.querySelectorAll('.content')[0];
+const headerBtns = document.querySelector('.header-btns'); //Находим кнопки добавить и обновить через родительский блок
 
+//Блок функций и обработчиков
+const refreshCatsAndContent = () => {
+  //функция отрисовки карточек
+  content.innerHTML = '';
   api.getAllCats().then((res) => {
     // console.log(res);
     const cards = res.reduce((acc, el) => (acc += generateCard(el)), '');
@@ -10,50 +16,88 @@ const refreshCatsAndContent = () => {
   });
 };
 
-refreshCatsAndContent();
-document
-  .getElementsByClassName('content')[0]
-  .addEventListener('click', (event) => {
-    console.log(event.target);
-    if (event.target.tagName === 'BUTTON') {
-      switch (event.target.className) {
-        case 'cat-card-view':
-          api.getDisplayCat(event.target.value).then((res) => {
-            console.log(res);
-            refreshCatsAndContent();
-          });
-          break;
-        case 'cat-card-update':
-          const evt = event.target.value;
-          const modal = document.querySelector('.create-edit-modal-form');
-          modal.classList.toggle('active'); //делаем модалку активной
-          const modalForm = document.querySelector('form'); //находим форму
-          const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
-          modalBtn.addEventListener('click', (evt) => {
-            const forms = document.forms[0];
-            forms.addEventListener('submit', (event) => {
-              // вешаем обработчик на кнопку формы
-              event.preventDefault();
-              const formData = new FormData(forms); //получаем данные формы
-              const cat = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
-              api.updateCat(cat).then((res) => {
-                console.log(res);
-                refreshCatsAndContent();
-              });
-              modal.classList.toggle('active'); //делаем модалку неактивной
-              forms.reset(); //очистка полей формы
+refreshCatsAndContent(); //вызов функции отрисовки карточек
+
+headerBtns.addEventListener('click', (event) => {
+  //обработчик кнопок добавить и обновить
+
+  if (event.target.tagName === 'BUTTON') {
+    switch (event.target.className) {
+      case 'add-btn':
+        const evt = event.target.value;
+        const createCardForm = createCard(); //при нажатии кнопки происходит отрисовка карточки
+        content.insertAdjacentHTML('afterbegin', createCardForm); //добавляем карточку на страницу
+        const modal = document.querySelector('.create-edit-modal-form'); //находим элемент с классом create-edit-modal-form
+        console.log(modal); // проверка что нашли
+        modal.classList.add('active'); //делаем модалку активной
+        const modalForm = document.querySelector('form'); //находим форму
+        const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
+        modalBtn.addEventListener('click', (evt) => {
+          const forms = document.forms[0];
+          forms.addEventListener('submit', (event) => {
+            // вешаем обработчик на кнопку формы
+            event.preventDefault();
+            const formData = new FormData(forms); //получаем данные формы
+            const catObj = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
+            const cat = { ...catObj, id: getNewIdOfCat() };
+            console.log(cat);
+            api.addCat({ cat }).then((res) => {
+              console.log(res);
+              refreshCatsAndContent();
             });
+            modal.classList.toggle('active'); //делаем модалку неактивной
+            forms.reset(); //очистка полей формы
           });
-          break;
-        case 'cat-card-delete':
-          api.getDeleteCat(event.target.value).then((res) => {
-            console.log(res);
-            refreshCatsAndContent();
-          });
-          break;
-      }
+        });
+        break;
+      case 'update-btn':
+        refreshCatsAndContent();
+        break;
     }
-  });
+  }
+});
+
+// content.addEventListener('click', (event) => {
+//   console.log(event.target);
+//   if (event.target.tagName === 'BUTTON') {
+//     switch (event.target.className) {
+//       case 'cat-card-view':
+//         api.getDisplayCat(event.target.value).then((res) => {
+//           console.log(res);
+//           refreshCatsAndContent();
+//         });
+//         break;
+//       case 'cat-card-update':
+//         const evt = event.target.value;
+//         const modal = document.querySelector('.create-edit-modal-form');
+//         modal.classList.toggle('active'); //делаем модалку активной
+//         const modalForm = document.querySelector('form'); //находим форму
+//         const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
+//         modalBtn.addEventListener('click', (evt) => {
+//           const forms = document.forms[0];
+//           forms.addEventListener('submit', (event) => {
+//             // вешаем обработчик на кнопку формы
+//             event.preventDefault();
+//             const formData = new FormData(forms); //получаем данные формы
+//             const cat = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
+//             api.updateCat(cat).then((res) => {
+//               console.log(res);
+//               refreshCatsAndContent();
+//             });
+//             modal.classList.toggle('active'); //делаем модалку неактивной
+//             forms.reset(); //очистка полей формы
+//           });
+//         });
+//         break;
+//       case 'cat-card-delete':
+//         api.getDeleteCat(event.target.value).then((res) => {
+//           console.log(res);
+//           refreshCatsAndContent();
+//         });
+//         break;
+//     }
+//   }
+// });
 
 // api
 //   .addCat({
@@ -128,3 +172,4 @@ const getNewIdOfCat = () => {
 getNewIdOfCat().then((res) => {
   //   console.log(res);
 });
+

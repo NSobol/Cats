@@ -9,6 +9,7 @@
 	<script src="./js/api.js" defer></script>
 	<script src="./js/index.js" defer></script>
 	<script src="./components/cart.js"></script>
+	<script src="./components/createCart.js"></script>
 	<link rel="stylesheet" href="./css/styles.css">
 </head>
 
@@ -18,34 +19,16 @@
 		<div class="top-panel">
 			<img src="./images/cat1.png" alt="Лого" class="logo">
 			<div class="header-btns">
-				<button class="add-btn" data-text="Добавить"></button>
-				<button class="update-btn" data-text="Обновить"></button>
+				<button class="add-btn" data-tooltip="Добавить"></button>
+				<button class="update-btn" data-tooltip="Обновить"></button>
 
 			</div>
 		</div>
 	</header>
 
 	<main class="main-content">
-
 		<div id="homepage">
 			<div class="content"></div>
-			<div class="create-edit-modal-form">
-				<form action="/target/" class="modal-form">
-					<!-- <label for="id">Id</label> -->
-					<input id="id" name="id" placeholder="Id" required />
-					<!-- <label for="name">Имя</label> -->
-					<input id="name" name="name" placeholder="Имя" required />
-					<!-- <label for="image">Ссылка на изображение</label> -->
-					<input id="image" name="image" placeholder="Ссылка на изображение" required />
-					<!-- <label for="age">Возраст</label> -->
-					<input id="age" name="age" type="number" placeholder="Возраст" required />
-					<!-- <label for="rate">Рейтинг</label> -->
-					<input id="rate" name="rate" type="number" placeholder="Рейтинг" required />
-					<textarea id="description" name="description" rows="3" placeholder="Описание" required></textarea>
-					<button type="submit">Ok</button>
-				</form>
-
-			</div>
 		</div>
 
 	</main>
