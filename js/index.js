@@ -13,7 +13,7 @@ const refreshCatsAndContent = () => {
   //функция отрисовки карточек
   content.innerHTML = '';
   api.getAllCats().then((res) => {
-    console.log(res); // вывод в консоль ответа сервера
+    //console.log(res); // вывод в консоль ответа сервера
     store.setItem('cats', JSON.stringify(res)); // пополнение локального хранилища нашими котами
     const cards = JSON.parse(store.getItem('cats')).reduce(
       (acc, el) => (acc += generateCard(el)),
@@ -48,7 +48,7 @@ headerBtns.addEventListener('click', (event) => {
             const catObj = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
             const cat = { id: getNewIdOfCat(), ...catObj };
             console.log(cat); //выводим новый элемент в консоль
-            let favorite = cat.favorite
+            const favorite = cat.favorite //проверка значения свойства "favorite" и конвертация значения в булев тип
               ? (cat.favorite = true)
               : (cat.favorite = false);
             api
@@ -82,8 +82,20 @@ content.addEventListener('click', (event) => {
     switch (event.target.className) {
       case 'cat-card-view':
         console.log(event.target.value);
-        getViewCardInLocal(event.target.value);
-        console.log(getViewCardInLocal(event.target.value));
+        let catView = getViewCardInLocal(event.target.value);
+        console.log(catView);
+        const cardViewPopup = generateCardView(catView);
+        content.insertAdjacentHTML('afterbegin', cardViewPopup);
+        const modalView = document.querySelector('.cardView-popup');
+
+        const modalViewBtn = modalView.querySelector('button');
+        modalViewBtn.addEventListener(
+          'click',
+          (evt) => {
+            modalView.remove();
+          },
+          { once: true }
+        );
         break;
       case 'cat-card-update':
       // const modal = document.querySelector('.create-edit-modal-form');
