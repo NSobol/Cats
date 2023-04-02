@@ -1,12 +1,14 @@
 const generateCard = (cat) => {
   return `<div class='cat-card'>
   <div class="cat-card-image">
- 	<img src=${cat.image} alt="Картинка котика" /> 
+ 	<img src=${
+    cat.image !== '' ? cat.image : defaultLink
+  } alt="Картинка котика" /> 
   </div>
 	
 	<p class="cat-name">${cat.name}</p>
 	<p class="cat-description">${cat.description}</p>
-	<div class="cat-favorite activ">
+	<div class="${cat.favorite ? 'cat-favorite activ' : 'cat-favorite'}">
 		<img src="./images/heart.svg" alt="Любимчик"/>
 	</div>
 	

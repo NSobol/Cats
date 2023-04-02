@@ -5,14 +5,14 @@ const createCard = () => {
 					<label for="name">Имя</label> 
 					<input id="name" name="name" placeholder="Имя" required /> <br />
 					<label for="image">Ссылка на изображение</label>
-					<input id="image" name="image" placeholder="Ссылка на изображение" required /><br />
+					<input id="image" name="image" placeholder="Ссылка на изображение"/><br />
 					<label for="age">Возраст</label> 
-					<input id="age" name="age" type="number" placeholder="Возраст" required /> <br />
+					<input id="age" name="age" type="number" placeholder="Возраст" /> <br />
 					<label for="rate">Рейтинг</label> 
-					<input id="rate" name="rate" type="number" placeholder="Рейтинг" required /> <br />
+					<input id="rate" name="rate" type="number" placeholder="Рейтинг" > <br />
 					<label for="favorite">Любимчик</label>
 					<input type="checkbox" id="favorite" name="favorite"/>
-					<textarea id="description" name="description" rows="3" placeholder="Описание" required></textarea>
+					<textarea id="description" name="description" rows="3" placeholder="Описание"></textarea>
 					<button type="submit">Ok</button>
 					<button type="reset">Закрыть</button>
 				</form>

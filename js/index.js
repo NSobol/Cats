@@ -5,6 +5,8 @@ const homepage = document.getElementById('homepage'); //находим элем�
 const content = document.querySelector('.content');
 const headerBtns = document.querySelector('.header-btns'); //Находим кнопки добавить и обновить через родительский блок
 let store = window.localStorage; // инициализация локального хранилища
+let defaultLink =
+  'https://f.vividscreen.info/soft/394ef96a4024b9182ac63e52cacd25a5/Cat-Wearing-Funny-Hat-2048x2048.jpg'; // картинка-заглушка
 
 //Блок функций и обработчиков
 const refreshCatsAndContent = () => {
@@ -37,26 +39,36 @@ headerBtns.addEventListener('click', (event) => {
         modal.classList.add('active'); //делаем модалку активной
         const modalForm = document.querySelector('form'); //находим форму
         const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
-        modalBtn.addEventListener('click', (evt) => {
-          const forms = document.forms[0];
-          event.preventDefault();
-          const formData = new FormData(forms); //получаем данные формы
-          const catObj = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
-          const cat = { id: getNewIdOfCat(), ...catObj };
-          //console.log(cat); //выводим новый элемент в консоль
-          api.addCat(cat).then((res) => {
-            //отправляем нового кота на сервер
-            console.log(res);
-            refreshCatsAndContent(); //отрисовка карточек заново
-          });
+        modalBtn.addEventListener(
+          'click',
+          (evt) => {
+            const forms = document.forms[0];
+            event.preventDefault();
+            const formData = new FormData(forms); //получаем данные формы
+            const catObj = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
+            const cat = { id: getNewIdOfCat(), ...catObj };
+            console.log(cat); //выводим новый элемент в консоль
+            let favorite = cat.favorite
+              ? (cat.favorite = true)
+              : (cat.favorite = false);
+            api
+              .addCat({
+                ...catObj,
+                favorite: favorite,
+                id: getNewIdOfCat(),
+              })
+              .then((res) => {
+                //отправляем нового кота на сервер
+                console.log(res);
+                refreshCatsAndContent(); //отрисовка карточек заново
+              });
+            modal.classList.toggle('active'); //делаем модалку неактивной
+            forms.reset(); //очистка полей формы
+            modal.remove(); //удаляем форму из дом-дерева
+          },
+          { once: true }
+        );
 
-          modal.classList.toggle('active'); //делаем модалку неактивной
-          forms.reset(); //очистка полей формы
-          modal.remove(); //удаляем форму из дом-дерева
-          //   forms.addEventListener('submit', (event) => {
-          //     // вешаем обработчик на кнопку формы
-          //   });
-        });
         break;
       case 'update-btn':
         refreshCatsAndContent();
@@ -70,7 +82,8 @@ content.addEventListener('click', (event) => {
     switch (event.target.className) {
       case 'cat-card-view':
         console.log(event.target.value);
-        getViewCard(event.target.value);
+        getViewCardInLocal(event.target.value);
+        console.log(getViewCardInLocal(event.target.value));
         break;
       case 'cat-card-update':
       // const modal = document.querySelector('.create-edit-modal-form');
@@ -104,10 +117,11 @@ content.addEventListener('click', (event) => {
   }
 });
 
-const getViewCard = (id) => {
-  let view = JSON.parse(store.getItem('cats'));
-  let viewCard = view.find((el) => el['id'] == id);
-  console.log(viewCard);
+const getViewCardInLocal = (id) => {
+  // функция получения данных из хранилища
+  let view = JSON.parse(store.getItem('cats')); // считываем хранилище и преобразуем в объект
+  let viewCard = view.find((el) => el['id'] == id); //находим нужный нам объект по id
+  return viewCard;
 };
 
 const getNewIdOfCat = () => {
