@@ -47,7 +47,6 @@ headerBtns.addEventListener('click', (event) => {
           api.addCat(cat).then((res) => {
             //отправляем нового кота на сервер
             console.log(res);
-            addCatInLocalStorage(cat); //добавляем кота в хранилище
             refreshCatsAndContent(); //отрисовка карточек заново
           });
 
