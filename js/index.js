@@ -38,8 +38,9 @@ headerBtns.addEventListener('click', (event) => {
         //console.log(modal); // проверка что нашли
         modal.classList.add('active'); //делаем модалку активной
         const modalForm = document.querySelector('form'); //находим форму
-        const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
-        modalBtn.addEventListener(
+        const modalBtnOk = modalForm.querySelector('.button-form-submit'); //находим кнопку отправки формы
+        const modalBtnClose = modalForm.querySelector('.button-form-close'); //находим кнопку отправки формы
+        modalBtnOk.addEventListener(
           'click',
           (evt) => {
             const forms = document.forms[0];
@@ -68,7 +69,13 @@ headerBtns.addEventListener('click', (event) => {
           },
           { once: true }
         );
-
+        modalBtnClose.addEventListener(
+          'click',
+          (evt) => {
+            modal.remove(); //удаляем форму из дом-дерева
+          },
+          { once: true }
+        );
         break;
       case 'update-btn':
         refreshCatsAndContent();
@@ -80,7 +87,7 @@ headerBtns.addEventListener('click', (event) => {
 content.addEventListener('click', (event) => {
   if (event.target.tagName === 'BUTTON') {
     switch (event.target.className) {
-      case 'cat-card-view':
+      case 'cat-card-view': // обработка нажатия кнопки просмотра
         console.log(event.target.value);
         let catView = getViewCardInLocal(event.target.value);
         console.log(catView);
@@ -97,28 +104,28 @@ content.addEventListener('click', (event) => {
           { once: true }
         );
         break;
-      case 'cat-card-update':
-      // const modal = document.querySelector('.create-edit-modal-form');
-      // modal.classList.toggle('active'); //делаем модалку активной
-      // const modalForm = document.querySelector('form'); //находим форму
-      // const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
-      // modalBtn.addEventListener('click', (evt) => {
-      //   const forms = document.forms[0];
-      //   forms.addEventListener('submit', (event) => {
-      //     // вешаем обработчик на кнопку формы
-      //     event.preventDefault();
-      //     const formData = new FormData(forms); //получаем данные формы
-      //     const cat = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
-      //     api.updateCat(cat).then((res) => {
-      //       console.log(res);
-      //       refreshCatsAndContent();
-      //     });
-      //     modal.classList.toggle('active'); //делаем модалку неактивной
-      //     forms.reset(); //очистка полей формы
-      //   });
-      // });
-      // break;
-      case 'cat-card-delete':
+      case 'cat-card-update': //обработка редактирования
+        // const modal = document.querySelector('.create-edit-modal-form');
+        // modal.classList.toggle('active'); //делаем модалку активной
+        // const modalForm = document.querySelector('form'); //находим форму
+        // const modalBtn = modalForm.querySelector('button'); //находим кнопку отправки формы
+        // modalBtn.addEventListener('click', (evt) => {
+        //   const forms = document.forms[0];
+        //   forms.addEventListener('submit', (event) => {
+        //     // вешаем обработчик на кнопку формы
+        //     event.preventDefault();
+        //     const formData = new FormData(forms); //получаем данные формы
+        //     const cat = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
+        //     api.updateCat(cat).then((res) => {
+        //       console.log(res);
+        //       refreshCatsAndContent();
+        //     });
+        //     modal.classList.toggle('active'); //делаем модалку неактивной
+        //     forms.reset(); //очистка полей формы
+        //   });
+        // });
+        break;
+      case 'cat-card-delete': //обработка нажатия кнопки удаления
         api.getDeleteCat(event.target.value).then((res) => {
           //запрос удаления кота на сервер
           console.log(res);
