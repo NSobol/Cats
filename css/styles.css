@@ -94,15 +94,20 @@ a {
 
 /*Стили основного контента*/
 
+.main-content {
+  min-height: 100%;
+}
+
 .content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 50px;
   margin-left: 40px;
   margin-right: 40px;
   margin-bottom: 40px;
   position: relative;
+  height: 100%;
 }
 
 .cat-card {
@@ -133,7 +138,7 @@ a {
 .cat-card-image > img {
   /*стили картинки внутри карточки*/
   width: inherit;
-  height: 250px;
+
   border-radius: 20px;
 }
 
@@ -156,7 +161,7 @@ a {
   position: absolute;
   display: block;
   margin-top: 20px;
-  margin-left: 250px;
+  margin-left: 20%;
   margin-right: 30px;
 }
 
@@ -310,6 +315,7 @@ a {
   height: 70px;
   background-color: var(--bg-color);
   position: sticky;
+  margin-top: 60px;
 }
 
 .footer-content {
