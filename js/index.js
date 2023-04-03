@@ -25,68 +25,60 @@ const refreshCatsAndContent = () => {
 
 refreshCatsAndContent(); //вызов функции отрисовки карточек
 
-headerBtns.addEventListener(
-  'click',
-  (event) => {
-    //обработчик кнопок добавить и обновить
+headerBtns.addEventListener('click', (event) => {
+  //обработчик кнопок добавить и обновить
 
-    if (event.target.tagName === 'BUTTON') {
-      switch (event.target.className) {
-        case 'add-btn':
-          const evt = event.target.value;
-          const createCardForm = createCard(); //при нажатии кнопки происходит отрисовка карточки
-          content.insertAdjacentHTML('afterbegin', createCardForm); //добавляем карточку на страницу
-          const modal = document.querySelector('.create-edit-modal-form'); //находим элемент с классом create-edit-modal-form
-          //console.log(modal); // проверка что нашли
-          modal.classList.add('active'); //делаем модалку активной
-          const modalForm = document.querySelector('form'); //находим форму
-          const modalBtnOk = modalForm.querySelector('.button-form-submit'); //находим кнопку отправки формы
-          const modalBtnClose = modalForm.querySelector('.button-form-close'); //находим кнопку отправки формы
-          modalBtnOk.addEventListener(
-            'click',
-            (evt) => {
-              const forms = document.forms[0];
-              event.preventDefault();
-              const formData = new FormData(forms); //получаем данные формы
-              const catObj = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
-              const cat = { id: getNewIdOfCat(), ...catObj };
-              console.log(cat); //выводим новый элемент в консоль
-              const favorite = cat.favorite //проверка значения свойства "favorite" и конвертация значения в булев тип
-                ? (cat.favorite = true)
-                : (cat.favorite = false);
-              api
-                .addCat({
-                  ...catObj,
-                  favorite: favorite,
-                  id: getNewIdOfCat(),
-                })
-                .then((res) => {
-                  //отправляем нового кота на сервер
-                  console.log(res);
-                  refreshCatsAndContent(); //отрисовка карточек заново
-                });
-              modal.classList.toggle('active'); //делаем модалку неактивной
-              forms.reset(); //очистка полей формы
-              modal.remove(); //удаляем форму из дом-дерева
-            },
-            { once: true }
-          );
-          modalBtnClose.addEventListener(
-            'click',
-            (evt) => {
-              modal.remove(); //удаляем форму из дом-дерева
-            },
-            { once: true }
-          );
-          break;
-        case 'update-btn':
-          refreshCatsAndContent();
-          break;
-      }
+  if (event.target.tagName === 'BUTTON') {
+    switch (event.target.className) {
+      case 'add-btn':
+        const evt = event.target.value;
+        const createCardForm = createCard(); //при нажатии кнопки происходит отрисовка карточки
+        content.insertAdjacentHTML('afterbegin', createCardForm); //добавляем карточку на страницу
+        const modal = document.querySelector('.create-edit-modal-form'); //находим элемент с классом create-edit-modal-form
+        //console.log(modal); // проверка что нашли
+        modal.classList.add('active'); //делаем модалку активной
+        const modalForm = document.querySelector('form'); //находим форму
+        const modalBtnOk = modalForm.querySelector('.button-form-submit'); //находим кнопку отправки формы
+        const modalBtnClose = modalForm.querySelector('.button-form-close'); //находим кнопку отправки формы
+        modalBtnOk.addEventListener('click', (evt) => {
+          const forms = document.forms[0];
+          event.preventDefault();
+          const formData = new FormData(forms); //получаем данные формы
+          const catObj = Object.fromEntries(formData); //вытаскиваем объект с данными для отправки
+          const cat = { id: getNewIdOfCat(), ...catObj };
+          console.log(cat); //выводим новый элемент в консоль
+          const favorite = cat.favorite //проверка значения свойства "favorite" и конвертация значения в булев тип
+            ? (cat.favorite = true)
+            : (cat.favorite = false);
+          api
+            .addCat({
+              ...catObj,
+              favorite: favorite,
+              id: getNewIdOfCat(),
+            })
+            .then((res) => {
+              //отправляем нового кота на сервер
+              console.log(res);
+              refreshCatsAndContent(); //отрисовка карточек заново
+            });
+          modal.classList.toggle('active'); //делаем модалку неактивной
+          forms.reset(); //очистка полей формы
+          modal.remove(); //удаляем форму из дом-дерева
+        });
+        modalBtnClose.addEventListener(
+          'click',
+          (evt) => {
+            modal.remove(); //удаляем форму из дом-дерева
+          },
+          { once: true }
+        );
+        break;
+      case 'update-btn':
+        refreshCatsAndContent();
+        break;
     }
-  },
-  { once: true }
-);
+  }
+});
 
 content.addEventListener(
   'click',
@@ -95,7 +87,7 @@ content.addEventListener(
       switch (event.target.className) {
         case 'cat-card-view': // обработка нажатия кнопки просмотра
           console.log(event.target.value);
-          let catView = getViewCardInLocal(event.target.value);
+          let catView = getViewCardInLocal(event.target.value); //находим в хранилище объекта кота
           console.log(catView);
           const cardViewPopup = generateCardView(catView);
           content.insertAdjacentHTML('afterbegin', cardViewPopup);
