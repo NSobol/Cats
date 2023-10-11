@@ -4,6 +4,7 @@ body {
   --bg-color: #213053;
   background-color: #fff;
   height: 100vh;
+  width: 100%;
   box-sizing: border-box;
 }
 
