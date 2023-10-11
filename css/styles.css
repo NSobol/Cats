@@ -130,16 +130,17 @@ a {
 .cat-card-image {
   box-sizing: border-box;
   width: 100%;
-  height: 80%;
+  height: 100%;
   margin-bottom: 15px;
   position: relative;
 }
 
 .cat-card-image > img {
   /*стили картинки внутри карточки*/
-  width: inherit;
-
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
+  box-sizing: border-box;
 }
 
 .cat-card p {
@@ -309,10 +310,14 @@ a {
   height: 40px;
 }
 
+.cardView-exit-mobile{
+  display: none;
+}
+
 /*Стили подвала*/
 .footer {
   width: 100%;
-  height: 70px;
+  height: fit-content;
   background-color: var(--bg-color);
   position: sticky;
   margin-top: 60px;
@@ -357,4 +362,144 @@ a {
 .footer-contacts-list-item a > img {
   width: 40px;
   height: 40px;
+}
+
+@media (max-width: 640px) {
+  .header-btns{
+    display: flex;
+  }
+
+  .add-btn,
+  .update-btn{
+    width: 30px;
+    height: 30px;
+  }
+
+  .update-btn {
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .content {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .cat-card{
+    width: 100%;
+  }
+
+  .cat-favorite.activ{
+    margin-top: 20px;
+    margin-left: 80%;
+    /* margin-right: 30px; */
+  }
+
+  .cardView {
+    top: 5%;
+    left: 0;
+    width: 98%;
+    height: fit-content;
+    flex-direction: column;
+  }
+
+  .cardView-image {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 15px;
+  }
+
+  .cardView-image img {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .cardView-content{
+    padding-bottom: 20px;
+    width: 96%;
+    padding-left: 15px;
+    margin-left: 0;
+  }
+
+  .cardView-exit {
+    position: relative;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    width: 70px;
+    background: none;
+    top: 0;
+    right: 0;
+  }
+
+  .cardView-exit-mobile{
+    display: inline;
+  }
+
+  .cardView-exit:hover {
+    border: 2px solid var(--bg-color);
+    box-shadow: 3px 3px 5px 5px #213053;
+    background-color: var(--bg-color);
+    color: #fff;
+  }
+
+  .cardView-exit:focus-visible {
+    border: 2px solid var(--bg-color);
+    box-shadow: 3px 3px 5px 5px #213053;
+    background-color: var(--bg-color);
+    color: #fff;
+  }
+
+  .active {
+    width: 95%;
+    height: fit-content;
+    top: 5%;
+    left: 0;
+  }
+
+  .modal-form{
+    padding: 5px;
+
+  }
+
+  .modal-form > label {
+  font-size: 20px;
+  margin: 8px 5px;
+  }
+
+  .modal-form > input {
+  width: 95%;
+  font-size: 20px;
+  margin: 8px 5px;
+  }
+
+  input[type="checkbox"] {
+  width: auto;
+  }
+
+  .modal-form > textarea {
+  width: 95%;
+  font-size: 20px;
+  margin-bottom: 20px;
+  }
+
+  .button-form-submit{
+    margin-bottom: 20px;
+  }
+
+  .cat-card-btns > button {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .footer-content{
+    flex-direction: column-reverse;
+  } 
+
+  .footer-contacts-list{
+    padding: 0;
+  }
 }
