@@ -366,10 +366,10 @@ a {
 }
 
 @media (max-width: 640px) {
-  html, body {
+  /* html, body {
     /* Убирает прокрутку по горизонтале, для мобильной версии */
-    overflow-x: hidden;
-  }
+    /* overflow-x: hidden; */
+  /* } */ 
   
   .header-btns{
     display: flex;
