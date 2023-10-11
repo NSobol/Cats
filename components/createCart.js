@@ -13,7 +13,7 @@ const createCard = () => {
 					<label for="favorite">Любимчик</label>
 					<input type="checkbox" id="favorite" name="favorite"/><br />
 					<label>Сообщение</label>  <br />
-					<textarea id="description" name="description" rows="3" placeholder="Описание"></textarea><br/>
+					<textarea id="description" name="description" rows="3" placeholder="Описание" required></textarea><br/>
 					<button type="submit" class="button-form-submit">Ok</button>
 					<button type="reset" class="button-form-close"></button>
 				</form>
