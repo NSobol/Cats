@@ -366,6 +366,11 @@ a {
 }
 
 @media (max-width: 640px) {
+  html, body {
+    /* Убирает прокрутку по горизонтале, для мобильной версии */
+    overflow-x: hidden;
+  }
+  
   .header-btns{
     display: flex;
   }
@@ -387,13 +392,12 @@ a {
   }
 
   .cat-card{
-    width: 100%;
+    width: 91%;
   }
 
   .cat-favorite.activ{
     margin-top: 20px;
     margin-left: 80%;
-    /* margin-right: 30px; */
   }
 
   .cardView {
