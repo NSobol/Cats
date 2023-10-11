@@ -4,7 +4,7 @@ body {
   --bg-color: #213053;
   background-color: #fff;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
 }
 
@@ -492,8 +492,8 @@ a {
   }
 
   .cat-card-btns > button {
-    margin-left: 4px;
-    margin-right: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
   }
 
   .footer-content{
