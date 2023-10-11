@@ -495,9 +495,15 @@ a {
     margin-bottom: 20px;
   }
 
+   .cat-card-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .cat-card-btns > button {
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .footer-content{
