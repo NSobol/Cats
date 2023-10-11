@@ -10,9 +10,10 @@ const generateCardView = (cat) => {
 		<div class="card-name">Имя: ${cat.name}</div>
 		<div class="card-description">Сообщение: ${cat.description}</div>
 		<div class="card-age">Возраст: ${cat.age}</div> 
-		<div class="card-rate">Рейтинг: ${cat.rate}</div> 
-		<button class="cardView-exit"></button>
+		<div class="card-rate">Рейтинг: ${cat.rate}</div>
 	</div>
+	<button class="cardView-exit"><span class="cardView-exit-mobile">Закрыть</span></button>
   </div>
  </div>`;
 };
+
