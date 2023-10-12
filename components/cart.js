@@ -6,8 +6,8 @@ const generateCard = (cat) => {
   } alt="Картинка котика" /> 
   </div>
 	
-	<p class="cat-name">${cat.name}</p>
-	<p class="cat-description">${cat.description}</p>
+	<p class="cat-name">${cat.name ? cat.name : "Котик"}</p>
+	<p class="cat-description">${cat.description ? cat.description : "Как Вам моя шапка?"}</p>
 	<div class="${cat.favorite ? 'cat-favorite activ' : 'cat-favorite'}">
 		<img src="./images/heart.svg" alt="Любимчик"/>
 	</div>

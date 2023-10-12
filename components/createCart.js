@@ -1,5 +1,6 @@
 const createCard = () => {
-  return `<div class="create-edit-modal-form">
+  return `<div class="create-edit-modal-form-popup">
+  		<div class="create-edit-modal-form">
   			<h2 class="create-edit-modal-title">Добавление</h2>
 				<form action="/target/" class="modal-form">
 					<label for="name">Имя</label>  <br />
@@ -17,5 +18,6 @@ const createCard = () => {
 					<button type="submit" class="button-form-submit">Ok</button>
 					<button type="reset" class="button-form-close"></button>
 				</form>
+		</div>
 		</div>`;
 };
