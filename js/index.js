@@ -121,12 +121,10 @@ content.addEventListener('click', (event) => {
             const formData = new FormData(forms); 
             const catObj = Object.fromEntries(formData); 
             const cat = { id: catUpdate.id, ...catObj };
-            console.log(cat);
             const favorite = cat.favorite 
               ? (cat.favorite = true)
               : (cat.favorite = false);
             api.updateCat({ ...cat, favorite: favorite }).then((res) => {
-              console.log(res);
               refreshCatsAndContent();
             });
             modal.classList.toggle('active'); 

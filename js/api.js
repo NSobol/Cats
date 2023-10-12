@@ -36,7 +36,6 @@ class Api {
       },
       body: JSON.stringify(cat),
     }).then((res) => {
-      console.log(res);
       return res.ok ? res.json() : Promise.reject('У меня лапки');
     });
   };
